@@ -10,6 +10,8 @@ function lovr.conf(t)
 end
 
 function lovr.load()
+	data.time = 0
+
 	lovr.graphics.setCullingEnabled(true)
 
 	shaders.emissive_shader:send('liteColor', {0.9, 0.9, 0.9, 1.0})
@@ -25,7 +27,14 @@ function lovr.load()
 	data.drone:getMaterial(1):setTexture("emissive", emisive_texture)
 end
 
+
+
 function lovr.update(dt)
+	data.time = data.time + dt
+
+	local color = math.sin(data.time*4) / 4.0 + 0.75
+    shaders.emissive_shader:send('emissiveColor', {color, color, color, 1.0})
+
 	-- Adjust head position (for shaders)
 	if lovr.headset then 
 		local hx, hy, hz = lovr.headset.getPosition()

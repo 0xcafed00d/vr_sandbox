@@ -124,6 +124,7 @@ local shaders = {
 	[[
 		uniform vec4 liteColor;
 		uniform vec4 ambience;
+		uniform vec4 emissiveColor = vec4(1.0, 1.0, 1.0, 1.0);
 	
 		in vec3 Normal;
 		in vec3 FragmentPos;
@@ -150,7 +151,7 @@ local shaders = {
 			vec4 baseColor = texture(image, uv) * lovrDiffuseColor;         
 			//vec4 objectColor = baseColor * vertexColor;
 
-			return baseColor * (ambience + diffuse + specular) + texture(lovrEmissiveTexture, uv);				
+			return baseColor * (ambience + diffuse + specular) + texture(lovrEmissiveTexture, uv) * emissiveColor;				
 		}
 	]], {}),
 }
