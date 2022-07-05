@@ -8,9 +8,6 @@ local data = {
 	rotSpeed = 2 * math.pi / 6
 }
 
-function lovr.conf(t)
-end
-
 function lovr.load()
 end
 
